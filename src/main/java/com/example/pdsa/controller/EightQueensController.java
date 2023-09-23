@@ -1,7 +1,7 @@
 package com.example.pdsa.controller;
 
 import com.example.pdsa.model.eightqueens.EightQueens;
-import com.example.pdsa.repository.EightQueenService;
+import com.example.pdsa.repository.EightQueensService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +16,10 @@ import java.util.List;
 public class EightQueensController {
 
     @Autowired
-    private EightQueenService eightQueenService;
+    private EightQueensService eightQueensService;
 
     @GetMapping("/all")
     public ResponseEntity<List<EightQueens>> allEightQueens(){
-        return new ResponseEntity<>(eightQueenService.all(), HttpStatus.OK);
+        return new ResponseEntity<>(eightQueensService.all(), HttpStatus.OK);
     }
 }
