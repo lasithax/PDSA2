@@ -1,17 +1,12 @@
 package com.example.pdsa.model.eightqueens;
 
-//import lombok.AllArgsConstructor;
-//import lombok.NoArgsConstructor;
-//import lombok.Data;
+import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
 @Document(collection = "eight_queens")
 public class EightQueens {
 

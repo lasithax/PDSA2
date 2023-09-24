@@ -1,13 +1,12 @@
 package com.example.pdsa.controller;
 
 import com.example.pdsa.model.eightqueens.EightQueens;
-import com.example.pdsa.repository.EightQueensService;
+import com.example.pdsa.model.eightqueens.EightQueensResponse;
+import com.example.pdsa.service.EightQueensService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +17,16 @@ public class EightQueensController {
     @Autowired
     private EightQueensService eightQueensService;
 
+    // get all saved responses
     @GetMapping("/all")
-    public ResponseEntity<List<EightQueens>> allEightQueens(){
+    public ResponseEntity<List<EightQueens>> all(){
         return new ResponseEntity<>(eightQueensService.all(), HttpStatus.OK);
+    }
+
+    // add new response
+    @PostMapping("/add-response")
+    public ResponseEntity<EightQueens> addNewResponse(@RequestBody EightQueensResponse eightQueensResponse){
+
+        return new ResponseEntity<>(eightQueensService.addNewResponse(eightQueensResponse), HttpStatus.CREATED);
     }
 }
