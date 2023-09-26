@@ -1,13 +1,14 @@
-package com.example.pdsa.model.eightqueens;
+package com.example.pdsa.model.knightstour;
 
 import java.util.List;
 
-public class EightQueensResponse {
+public class KnightsTourResponse {
     private String name;
     private List<String> response;
-    public EightQueensResponse() {
+
+    public KnightsTourResponse() {
     }
-    public EightQueensResponse(String name, List<String> response) {
+    public KnightsTourResponse(String name, List<String> response) {
         this.name = name;
         this.response = response;
     }
