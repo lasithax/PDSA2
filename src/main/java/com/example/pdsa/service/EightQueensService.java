@@ -25,7 +25,13 @@ public class EightQueensService {
     }
 
     public EightQueens addNewResponse(EightQueensResponse eightQueensResponse) {
-        return eightQueensRepo.save(new EightQueens(new ObjectId(), eightQueensResponse.getName(), eightQueensResponse.getResponse()));
+        return eightQueensRepo.save(
+                new EightQueens(
+                        new ObjectId(),
+                        eightQueensResponse.getName(),
+                        eightQueensResponse.getResponse()
+                )
+        );
     }
 
 
