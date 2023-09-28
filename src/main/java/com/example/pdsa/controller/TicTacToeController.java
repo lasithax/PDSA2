@@ -1,25 +1,43 @@
 package com.example.pdsa.controller;
 
+import com.example.pdsa.logic.TicTacToeGame;
 import com.example.pdsa.service.TicTacToeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/tictactoe")
 public class TicTacToeController {
 
     @Autowired
-    private TicTacToeService ticTacToeService;
+    private TicTacToeService tictactoeService;
 
     @GetMapping("/start")
-    public String start(){
+    public ResponseEntity<String> start(@RequestParam String username){
+        // /tictactoe/start?username=Name
+        tictactoeService.start(username);
+        return new ResponseEntity<>("Game started", HttpStatus.OK);
+    }
 
-        return "start";
+    @PostMapping("/play")
+    public ResponseEntity<TicTacToeGame.Response> play(@RequestParam int[] coordinate){
+        // /tictactoe/play?position=0,0
+        return new ResponseEntity<>(tictactoeService.play(coordinate), HttpStatus.OK);
     }
 
 
+    // /tictactoe/chooseturn?turn=player
+    // /tictactoe/chooseturn?turn=computer
+//    @PostMapping("/chooseturn")
+//    public String chooseTurn(@RequestParam String turn){
+//        return "chooseTurn";
+//    }
 
 
+//    @GetMapping("/getmove")
+//    public int[] getMove(){
+//        return new int[]{0,0};
+//    }
 }
