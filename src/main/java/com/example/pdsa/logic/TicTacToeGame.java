@@ -41,7 +41,7 @@ public class TicTacToeGame {
         return getResponse();
     }
 
-    public Response getResponse() {
+    private Response getResponse() {
         int[] AIMove = {};
         String gameState = checkGameState();
 
@@ -49,10 +49,6 @@ public class TicTacToeGame {
             AIMove = getAIMove(board, 'O');
             gameState = checkGameState();
             totalMoves++;
-        }
-
-        if(!gameInProgress){
-            saveResult();
         }
 
         return new Response(AIMove, gameState, null);
@@ -73,7 +69,7 @@ public class TicTacToeGame {
         }
     }
 
-    public int[] getAIMove(char[][] board, char currentPlayer) {
+    private int[] getAIMove(char[][] board, char currentPlayer) {
         int[] bestMove = minimax(board, currentPlayer);
         int row = bestMove[0];
         int col = bestMove[1];
@@ -228,8 +224,7 @@ public class TicTacToeGame {
         return true;
     }
 
-    private void saveResult(){
-        TicTacToeService tttService = new TicTacToeService();
+    public TicTacToe getResult(){
         //convert char board to String board
         String[][] stringBoard = new String[3][3];
         for(int i=0; i<3; i++){
@@ -237,6 +232,7 @@ public class TicTacToeGame {
                 stringBoard[i][j] = String.valueOf(board[i][j]);
             }
         }
-        tttService.saveResult(new TicTacToe(new ObjectId(), username, result, String.valueOf(sign), stringBoard));
+
+        return new TicTacToe(new ObjectId(), username, result, String.valueOf(sign), stringBoard);
     }
 }

@@ -17,7 +17,12 @@ public class TicTacToeService {
     }
 
     public TicTacToeGame.Response play(int[] coordinate){
-        return tttGame.playerMove(coordinate);
+        TicTacToeGame.Response response = tttGame.playerMove(coordinate);
+        if(!response.gameState.equals("In play")){
+            saveResult(tttGame.getResult());
+        }
+
+        return response;
     }
 
     public void saveResult(TicTacToe result){
