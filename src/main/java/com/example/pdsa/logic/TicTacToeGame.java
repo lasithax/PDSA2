@@ -57,16 +57,18 @@ public class TicTacToeGame {
     private String checkGameState() {
         if (checkWin(board, 'X')) {
             gameInProgress = false;
-            return "Won";
+            result = "Won";
         } else if (checkWin(board, 'O')) {
             gameInProgress = false;
-            return "Lost";
+            result = "Lost";
         } else if (totalMoves == 9) {
             gameInProgress = false;
-            return "Draw";
+            result = "Draw";
         } else {
             return "In play";
         }
+
+        return result;
     }
 
     private int[] getAIMove(char[][] board, char currentPlayer) {
