@@ -15,8 +15,22 @@ public class KnightsTourService {
 
     private KnightsTourGame ktGame;
 
+    private String username;
+
+
+    public KnightsTourGame.Position start(String username){
+        this.username = username;
+        ktGame = new KnightsTourGame();
+        return ktGame.getStartingPosition();
+    }
+    public KnightsTourGame.Result verify(KnightsTourResponse knightsTourResponse){
+        KnightsTourGame.Result result = ktGame.verify(knightsTourResponse.getResponse());
+        if (result.result.equals("WON")){
+            addNewResponse(knightsTourResponse);
+        }
+        return result;
+    }
     public KnightsTour addNewResponse(KnightsTourResponse knightsTourResponse) {
-        //TODO: implement logic to save response in db
         return knightsTourRepo.save(
                 new KnightsTour(
                         new ObjectId(),
@@ -24,13 +38,5 @@ public class KnightsTourService {
                         knightsTourResponse.getResponse()
                 )
         );
-    }
-
-    public KnightsTourGame.Position start(){
-        ktGame = new KnightsTourGame();
-        return ktGame.getStartingPosition();
-    }
-    public KnightsTourGame.Result verify(KnightsTourResponse knightsTourResponse){
-        return ktGame.verify(knightsTourResponse.getResponse());
     }
 }
