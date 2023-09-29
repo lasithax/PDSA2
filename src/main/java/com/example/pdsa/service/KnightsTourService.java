@@ -16,6 +16,7 @@ public class KnightsTourService {
     private KnightsTourGame ktGame;
 
     public KnightsTour addNewResponse(KnightsTourResponse knightsTourResponse) {
+        //TODO: implement logic to save response in db
         return knightsTourRepo.save(
                 new KnightsTour(
                         new ObjectId(),

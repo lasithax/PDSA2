@@ -18,7 +18,7 @@ public class TicTacToeGame {
         }
     }
 
-    private String username;
+    private String username; //TODO: username belongs in the service class
     private String result;
     private final char sign = 'X';
     private char[][] board = {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
