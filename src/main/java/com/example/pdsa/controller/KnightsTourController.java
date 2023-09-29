@@ -16,8 +16,9 @@ public class KnightsTourController {
     private KnightsTourService knightsTourService;
 
     @GetMapping("/start")
-    public ResponseEntity<KnightsTourGame.Position> start(){
-        return new ResponseEntity<>(knightsTourService.start(), HttpStatus.OK);
+    // /start?username=John
+    public ResponseEntity<KnightsTourGame.Position> start(@RequestParam(required = false) String username){
+        return new ResponseEntity<>(knightsTourService.start(username), HttpStatus.OK);
     }
 
     @PostMapping("/verify")

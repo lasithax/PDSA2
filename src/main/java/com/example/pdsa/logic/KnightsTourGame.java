@@ -18,6 +18,7 @@ public class KnightsTourGame {
     }
 
     public class Result {
+        //TODO: this class can be converted into a Map<String, String>
         public String result;
         public String comment;
         public Result(String result, String comment) {
@@ -105,7 +106,7 @@ public class KnightsTourGame {
         for(int i = 0; i < board.length; i++){
             for(int j = 0; j < board.length; j++){
                 if(board[i][j] == 0){
-                    return new Result("LOST", "You have not visited " + letters[i] + (j+1) + " yet");
+                    return new Result("LOST", "You have not visited all positions yet");
                 }
             }
         }
