@@ -19,8 +19,8 @@ public class LCSGame {
 
     public boolean checkAnswer(String answer){
         String lcs = findLCS(str1, str2);
-
-        return answer.equals(lcs);
+        String ans = answer.toUpperCase();
+        return ans.equals(lcs);
     }
 
     private static String generateRandomString(int length) {
