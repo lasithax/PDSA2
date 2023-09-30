@@ -1,26 +1,32 @@
 package com.example.pdsa.model.eightqueens;
 
-import java.util.List;
-
 public class EightQueensResponse {
     private String name;
-    private List<String> response;
+    private int[] response;
+
     public EightQueensResponse() {
     }
-    public EightQueensResponse(String name, List<String> response) {
+
+    public EightQueensResponse(String name, int[] response) {
         this.name = name;
         this.response = response;
     }
+
     public String getName() {
         return name;
     }
-    public void setName(String name) {
+
+    public EightQueensResponse setName(String name) {
         this.name = name;
+        return this;
     }
-    public List<String> getResponse() {
+
+    public int[] getResponse() {
         return response;
     }
-    public void setResponse(List<String> response) {
+
+    public EightQueensResponse setResponse(int[] response) {
         this.response = response;
+        return this;
     }
 }
