@@ -1,11 +1,12 @@
 package com.example.pdsa.logic;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class ShortestPathGame {
 
-    private static final int MAX_VERTICES = 10;
+    public static final int MAX_VERTICES = 10;
     private int[][] adjacencyMatrix;
     private static int sourceVertex;
 
@@ -21,6 +22,7 @@ public class ShortestPathGame {
 
         public void setResult(int[] distances, int[] previousVertex) {
             this.distances = distances;
+            paths = new int[distances.length][];
 
             for(int i = 0; i < distances.length; i++) {
                 int[] path = new int[distances.length];
@@ -52,14 +54,6 @@ public class ShortestPathGame {
         }
     }
 
-    public static class DijkstraResult {
-        int[] distances; // distances[0] = distance from starting city to city 0
-        int[][] path; // paths[0] = paths from starting city to city 0 = [starting city, 2, 3, 4, 0]
-
-        // in milliseconds
-
-    }
-
     public class Graph {
         public List<Integer> vertices;
         public List<Edge> edges;
@@ -79,6 +73,8 @@ public class ShortestPathGame {
         }
 
         public Graph(int[][] matrix){
+            vertices = new ArrayList<>();
+            edges = new ArrayList<>();
             constructGraph(matrix);
         }
 
@@ -116,7 +112,7 @@ public class ShortestPathGame {
     }
 
 
-    ShortestPathGame() {
+    public ShortestPathGame() {
         adjacencyMatrix = new int[MAX_VERTICES][MAX_VERTICES];
         allresult = new AllResult();
         initializeMatrix();
@@ -185,7 +181,6 @@ public class ShortestPathGame {
             result.distance[i] = Integer.MAX_VALUE;
         }
         result.distance[sourceVertex] = 0;
-        result.visited[sourceVertex] = 1;
         result.previousVertex[sourceVertex] = sourceVertex;
 
         for(int j = 0; j < V; j++) {
@@ -215,5 +210,17 @@ public class ShortestPathGame {
             }
         }
         return minDistanceVertex;
+    }
+
+    public int[][] getAdjacencyMatrix() {
+        return adjacencyMatrix;
+    }
+
+    public static int getSourceVertex() {
+        return sourceVertex;
+    }
+
+    public AllResult getAllresult() {
+        return allresult;
     }
 }
