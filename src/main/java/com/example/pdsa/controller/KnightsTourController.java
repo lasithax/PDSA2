@@ -9,15 +9,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080"})
 @RequestMapping("/knightstour")
 public class KnightsTourController {
     @Autowired
     private KnightsTourService knightsTourService;
 
     @GetMapping("/start")
-    public ResponseEntity<KnightsTourGame.Position> start(){
-        return new ResponseEntity<>(knightsTourService.start(), HttpStatus.OK);
+    // /start?username=John
+    public ResponseEntity<KnightsTourGame.Position> start(@RequestParam(required = false) String username){
+        return new ResponseEntity<>(knightsTourService.start(username), HttpStatus.OK);
     }
 
     @PostMapping("/verify")

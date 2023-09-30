@@ -15,21 +15,27 @@ public class KnightsTourService {
 
     private KnightsTourGame ktGame;
 
-    public KnightsTour addNewResponse(KnightsTourResponse knightsTourResponse) {
-        return knightsTourRepo.save(
-                new KnightsTour(
-                        new ObjectId(),
-                        knightsTourResponse.getName(),
-                        knightsTourResponse.getResponse()
-                )
-        );
-    }
+    private String username;
 
-    public KnightsTourGame.Position start(){
+
+    public KnightsTourGame.Position start(String username){
+        this.username = username;
         ktGame = new KnightsTourGame();
         return ktGame.getStartingPosition();
     }
     public KnightsTourGame.Result verify(KnightsTourResponse knightsTourResponse){
-        return ktGame.verify(knightsTourResponse.getResponse());
+        KnightsTourGame.Result result = ktGame.verify(knightsTourResponse.getResponse());
+        if (result.result.equals("WON")){
+            addNewResponse(knightsTourResponse);
+        }
+        return result;
+    }
+    public void addNewResponse(KnightsTourResponse knightsTourResponse) {
+         knightsTourRepo.save(new KnightsTour(
+                new ObjectId(),
+                knightsTourResponse.getName(),
+                knightsTourResponse.getResponse()
+            )
+        );
     }
 }
