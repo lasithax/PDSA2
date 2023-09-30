@@ -30,13 +30,12 @@ public class KnightsTourService {
         }
         return result;
     }
-    public KnightsTour addNewResponse(KnightsTourResponse knightsTourResponse) {
-        return knightsTourRepo.save(
-                new KnightsTour(
-                        new ObjectId(),
-                        knightsTourResponse.getName(),
-                        knightsTourResponse.getResponse()
-                )
+    public void addNewResponse(KnightsTourResponse knightsTourResponse) {
+         knightsTourRepo.save(new KnightsTour(
+                new ObjectId(),
+                knightsTourResponse.getName(),
+                knightsTourResponse.getResponse()
+            )
         );
     }
 }
