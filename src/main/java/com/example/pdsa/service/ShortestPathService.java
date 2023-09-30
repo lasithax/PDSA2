@@ -1,8 +1,12 @@
 package com.example.pdsa.service;
 
 import com.example.pdsa.logic.ShortestPathGame;
+import com.example.pdsa.model.shortestpath.ShortestPathAlgorithm;
 import com.example.pdsa.model.shortestpath.ShortestPathGameData;
+import com.example.pdsa.model.shortestpath.ShortestPathSubmission;
+import com.example.pdsa.repository.ShortestPathAlgorithmRepository;
 import com.example.pdsa.repository.ShortestPathRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +19,11 @@ public class ShortestPathService {
     @Autowired
     private ShortestPathRepository shortestPathRepo;
 
+    @Autowired
+    private ShortestPathAlgorithmRepository shortestPathAlgorithmRepo;
+
     private ShortestPathGame spGame;
+    private ShortestPathGame.AllResult result;
 
     private String username;
 
@@ -36,7 +44,21 @@ public class ShortestPathService {
 
         // convert vertex index value to Alphabet letter
         char startingCity = (char) (spGame.getSourceVertex() + 65);
+        saveAlgoTimes();
 
         return new ShortestPathGameData(String.valueOf(startingCity), distances);
+    }
+
+    public String submit(ShortestPathSubmission submission){
+        return "Incorrect";
+    }
+    public void saveAlgoTimes(){
+        result = spGame.getAllResult();
+        shortestPathAlgorithmRepo.save(new ShortestPathAlgorithm(
+                new ObjectId(),
+                (int) result.bellmanFordTime,
+                (int) result.dijkstraTime
+            )
+        );
     }
 }

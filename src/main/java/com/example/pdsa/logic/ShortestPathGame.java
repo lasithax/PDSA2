@@ -16,9 +16,9 @@ public class ShortestPathGame {
         int[] distances; // distances from source vertex to all other vertices
         int[][] paths; // paths from source vertex to each vertex
 
-        // in milliseconds
-        long bellmanFordTime;
-        long dijkstraTime;
+        // in nanoseconds
+        public long bellmanFordTime;
+        public long dijkstraTime;
 
         public void setResult(int[] distances, int[] previousVertex) {
             this.distances = distances;
@@ -142,7 +142,7 @@ public class ShortestPathGame {
     }
 
     private void bellmanFord(Graph graph, int sourceVertex) {
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
         int V = graph.vertices.size();
         int E = graph.edges.size();
         Result result = new Result(V);
@@ -164,14 +164,14 @@ public class ShortestPathGame {
             }
         }
 
-        long endTime = System.currentTimeMillis();
+        long endTime = System.nanoTime();
         long timeElapsed = endTime - startTime;
         allresult.setResult(result.distance, result.previousVertex);
         allresult.setBellmanFordTime(timeElapsed);
     }
 
     private void dijkstra(Graph graph, int sourceVertex) {
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
         int V = graph.vertices.size();
         int E = graph.edges.size();
         Result result = new Result(V);
@@ -195,7 +195,7 @@ public class ShortestPathGame {
             }
         }
 
-        long endTime = System.currentTimeMillis();
+        long endTime = System.nanoTime();
         long timeElapsed = endTime - startTime;
         allresult.setDijkstraTime(timeElapsed);
     }
@@ -220,7 +220,7 @@ public class ShortestPathGame {
         return sourceVertex;
     }
 
-    public AllResult getAllresult() {
+    public AllResult getAllResult() {
         return allresult;
     }
 }
