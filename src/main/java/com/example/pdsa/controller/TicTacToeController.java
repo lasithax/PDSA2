@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080"})
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/tictactoe")
 public class TicTacToeController {
 
@@ -27,18 +27,4 @@ public class TicTacToeController {
         // /tictactoe/play?position=0,0
         return new ResponseEntity<>(tictactoeService.play(coordinate), HttpStatus.OK);
     }
-
-
-    // /tictactoe/chooseturn?turn=player
-    // /tictactoe/chooseturn?turn=computer
-//    @PostMapping("/chooseturn")
-//    public String chooseTurn(@RequestParam String turn){
-//        return "chooseTurn";
-//    }
-
-
-//    @GetMapping("/getmove")
-//    public int[] getMove(){
-//        return new int[]{0,0};
-//    }
 }
