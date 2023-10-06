@@ -50,8 +50,26 @@ public class ShortestPathService {
     }
 
     public String submit(ShortestPathSubmission submission){
-        List<Integer> distances = submission.getDistances();
-        List<List<Integer>> paths = submission.getPaths();
+        // {"25", "35", ...} -> {25, 35, ...}
+        List<String> stringDistances = submission.getDistances();
+        // { "A,B,C", "A,B,D", ...} -> { {0,1,2}, {0,1,3}, ...}
+        List<String> charPaths = submission.getPaths();
+
+        List<Integer> distances = new ArrayList<>();
+        List<List<Integer>> paths = new ArrayList<>();
+
+        for(String s : stringDistances) {
+            distances.add(Integer.valueOf(s));
+        }
+
+        for(String s : charPaths) {
+            List<Integer> path = new ArrayList<>();
+            for(String c : s.split(",")) {
+                path.add((int) c.charAt(0) - 65);
+            }
+            paths.add(path);
+        }
+
 
         // all paths must start with source vertex
         if (distances.equals(result.distanceList) && paths.equals(result.pathList)) {
