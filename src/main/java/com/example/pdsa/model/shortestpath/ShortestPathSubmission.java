@@ -3,30 +3,30 @@ package com.example.pdsa.model.shortestpath;
 import java.util.List;
 
 public class ShortestPathSubmission {
-    public List<Integer> distances;
-    public List<List<Integer>> paths;
+    public List<String> distances;
+    public List<String> paths;
 
     public ShortestPathSubmission() {
     }
 
-    public ShortestPathSubmission(List<Integer> distances, List<List<Integer>> paths) {
+    public ShortestPathSubmission(List<String> distances, List<String> paths) {
         this.distances = distances;
         this.paths = paths;
     }
 
-    public List<Integer> getDistances() {
+    public List<String> getDistances() {
         return distances;
     }
 
-    public void setDistances(List<Integer> distances) {
+    public void setDistances(List<String> distances) {
         this.distances = distances;
     }
 
-    public List<List<Integer>> getPaths() {
+    public List<String> getPaths() {
         return paths;
     }
 
-    public void setPaths(List<List<Integer>> paths) {
+    public void setPaths(List<String> paths) {
         this.paths = paths;
     }
 }
