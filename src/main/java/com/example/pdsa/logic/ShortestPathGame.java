@@ -11,8 +11,8 @@ public class ShortestPathGame {
     public AllResult allresult;
 
     public class AllResult {
-        List<Integer> distanceList; // distances from source vertex to all other vertices
-        List<List<Integer>> pathList; // paths from source vertex to each vertex
+        public List<Integer> distanceList; // distances from source vertex to all other vertices
+        public List<List<Integer>> pathList; // paths from source vertex to each vertex
 
         // in nanoseconds
         public long bellmanFordTime;
