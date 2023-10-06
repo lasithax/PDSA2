@@ -50,7 +50,15 @@ public class ShortestPathService {
     }
 
     public String submit(ShortestPathSubmission submission){
-        return "Incorrect";
+        List<Integer> distances = submission.getDistances();
+        List<List<Integer>> paths = submission.getPaths();
+
+        // all paths must start with source vertex
+        if (distances.equals(result.distanceList) && paths.equals(result.pathList)) {
+            return "Correct";
+        } else {
+            return "Incorrect";
+        }
     }
     public void saveAlgoTimes(){
         result = spGame.getAllResult();

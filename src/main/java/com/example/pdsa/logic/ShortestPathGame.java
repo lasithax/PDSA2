@@ -1,8 +1,6 @@
 package com.example.pdsa.logic;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class ShortestPathGame {
 
@@ -13,35 +11,33 @@ public class ShortestPathGame {
     public AllResult allresult;
 
     public class AllResult {
-        int[] distances; // distances from source vertex to all other vertices
-        int[][] paths; // paths from source vertex to each vertex
+        public List<Integer> distanceList; // distances from source vertex to all other vertices
+        public List<List<Integer>> pathList; // paths from source vertex to each vertex
 
         // in nanoseconds
         public long bellmanFordTime;
         public long dijkstraTime;
 
         public void setResult(int[] distances, int[] previousVertex) {
-            this.distances = distances;
-            paths = new int[distances.length][];
+            distanceList = new ArrayList<>();
+            for(int d : distances) {
+                distanceList.add(Integer.valueOf(d));
+            }
+
+            pathList = new ArrayList<>();
 
             for(int i = 0; i < distances.length; i++) {
-                int[] path = new int[distances.length];
-                int j = 0;
+                List<Integer> path = new ArrayList<>();
+
                 int currentVertex = i;
                 while(currentVertex != sourceVertex) {
-                    path[j] = currentVertex;
+                    path.add(currentVertex);
                     currentVertex = previousVertex[currentVertex];
-                    j++;
                 }
-                path[j] = sourceVertex;
-                //reverse path
-                for(int k = 0; k < path.length / 2; k++) {
-                    int temp = path[k];
-                    path[k] = path[path.length - k - 1];
-                    path[path.length - k - 1] = temp;
-                }
+                path.add(sourceVertex);
 
-                paths[i] = path;
+                Collections.reverse(path);
+                pathList.add(path);
             }
         }
 
@@ -54,7 +50,7 @@ public class ShortestPathGame {
         }
     }
 
-    public class Graph {
+    public class Graph  {
         public List<Integer> vertices;
         public List<Edge> edges;
 
