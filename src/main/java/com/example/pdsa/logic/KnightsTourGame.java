@@ -103,9 +103,9 @@ public class KnightsTourGame {
         }
 
         // check if all positions have been visited
-        for(int i = 0; i < board.length; i++){
-            for(int j = 0; j < board.length; j++){
-                if(board[i][j] == 0){
+        for (int[] row : board) {
+            for (int c = 0; c < board.length; c++) {
+                if (row[c] == 0) {
                     return new Result("LOST", "You have not visited all positions yet");
                 }
             }
